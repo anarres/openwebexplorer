@@ -1,19 +1,23 @@
 <?php
 /**
- * Static page template.
+ * Default page template.
  *
- * @package P2
+ * @package Open Web Explorer
  */
 ?>
+
 <?php get_header(); ?>
 
-<div class="sleeve_main">
+    <div id="main">
 
-	<div id="main">
-		<h2><?php the_title(); ?><h2>
+	    <?php while ( have_posts() ) : the_post(); ?>
 
-	</div> <!-- main -->
+	        <h1><?php the_title(); ?></h1>
 
-</div> <!-- sleeve -->
+	        <?php the_content(); ?>
+
+	    <?php endwhile; // end of the loop. ?>
+
+    </div> <!--#main-->
 
 <?php get_footer(); ?>

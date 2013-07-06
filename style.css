@@ -1,9 +1,9 @@
 /*
 Theme Name: Open Web Explorer
-Theme URI: http://foofurple.org/
+Theme URI: FIXME
 Description: A Wordpress theme for a new project called 'Open Web Explorer', a social networking website that’s really really simple and allows the user to follow people on other social networks, as well as blogs, websites, podcasts, and anything else.
 Author: anarres
-Author URI: http://foofurple.org/
+Author URI: info@foofurple.com
 Version: 0.1
 Tags: threaded-comments editor-style
 
@@ -37,10 +37,11 @@ h1 {
 h2, h3,h4,h5,h6 {
     font-size: 1.2em;
     font-weight: normal;
-    padding: 5px 0px;
+    padding: 8px 0px;
 }
 p {
-    padding: 5px 0px;
+    padding: 8px 0px;
+    line-height: 1.4em;
 }
 li {
     list-style: none;
@@ -53,10 +54,8 @@ a {
     font-weight: regular;
 }
 a:hover {
-    color: #1bf;
-}
-a:visited {
-    color: #666;
+    color: #b11331;
+    text-decoration: underline;
 }
 input, textarea, button {
     font-family: "Arial", sans-serif;
@@ -87,17 +86,61 @@ body {
     width: 100%;
 }
 div#container {
-    width: 800px;
+    width: 600px;
     max-width: 100%;
     margin: 0px auto;
 }
 
-div#sidebar {
-    display: none;
+/* HEADER */
+
+div#header {
 }
 
+div#header li {
+    padding: 0px;
+    margin: 0px;
+    float: left;
+}
+
+/* TOP MENU */
+
+div#topMenu a {
+    font-size: 0.8em;
+    padding: 5px 0px;
+    padding-right: 10px;
+}
+
+.current_menu_item a, .current_page_item a {
+    color: #222;
+    cursor: text;
+}
+.current_menu_item a:hover, .current_page_item a:hover {
+    color: #222;
+    cursor: text;
+    text-decoration: none;
+}
+
+/* NETWORK TITLE / BRANDING AND SITE TITLE */
+
+div.headerTitle {
+    float: left;
+}
+h2#networkTitle {
+    width: 120px;
+    margin-right: 20px;
+    float:left;
+}
+h2#siteTitle {
+    font-size: 1.6em;
+    float: right;
+    padding: 0px;
+}
+div#main {
+    padding-top: 40px;
+    clear: both;
+}
 div#footer {
-    margin-top: 10px;
+    margin-top: 80px;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -122,7 +165,7 @@ div#postbox {
     padding-bottom: 40px;
 }
 div#postbox textarea {
-    width: 800px;
+    width: 600px;
     max-width: 100%;
     min-height: 100px;
 }
@@ -141,16 +184,13 @@ div#postbox-type-quote {
 }
 
 
-
-
-
-
 /* OWN POSTED ITEMS */
 
 ul#postlist li {
     margin: 20px 0px;
     padding: 10px;
     border: 2px solid #aaa;
+    border-radius: 5px;
 }
 ul#postlist img {
     margin-right: 10px;
@@ -197,34 +237,14 @@ span.date {
     font-size: 0.7em;
 }
 
-/* Menus */
-
-ul.menu {
-    margin: 5px 0px;
-}
-ul.menu li {
-    display: inline;
-    padding: 5px 10px;
-}
-ul.menu a {
-    text-transform:uppercase;
-}
-
-.current_menu_item, .current_page_item {
-    background-color: #eee;
-    border-radius: 2px;
-}
-.current_menu_item a, .current_page_item a {
-    color: #222;
-    cursor: text;
-}
-
 
 
 /* GET RID OF VARIOUS BITS AND PIECES */
 
 /* Annoying admin bar at top of page */
 
+
+/*
  .show-admin-bar { 
     display: none; 
 }
@@ -235,4 +255,5 @@ a#directions-keyboard {
     visibility:hidden;
     height: 0px;
 }
+*/
 

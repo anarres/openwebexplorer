@@ -1,14 +1,20 @@
 <?php
 /*
 Template Name: Page With Stream
-*/
+ */
 ?>
 
 <?php get_header(); ?>
 
-<div class="sleeve_main">
+    <div id="main">
 
-	<div id="main">
+	    <?php while ( have_posts() ) : the_post(); ?>
+
+	        <h1><?php the_title(); ?></h1>
+
+	        <?php the_content(); ?>
+
+	    <?php endwhile; // end of the loop. ?>
 
         <?php
             $bookmarks = get_bookmarks();
@@ -24,8 +30,9 @@ Template Name: Page With Stream
             ));
         ?>
 
-	</div> <!-- main -->
-
-</div> <!-- sleeve -->
+    </div> <!--#main-->
 
 <?php get_footer(); ?>
+
+
+

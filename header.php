@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Header template.
@@ -12,7 +11,9 @@
 
 <head>
     <link rel="icon" type="image/png" href="FIXME">
-    <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
+    <meta http-equiv="Content-Type" 
+        content="<?php bloginfo( 'html_type' ); ?>; 
+        charset=<?php bloginfo( 'charset' ); ?>" />
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
     <?php wp_head(); ?>
@@ -24,49 +25,34 @@
 <div id="container">
 <div id="containerInner">
 
-<div id="header">
+    <div id="header">
 
-	<h2>
-        <a href="<?php echo network_site_url(); ?>">
-            <img src="<?php bloginfo('stylesheet_directory'); ?>/images/dinoLogoWithTitle.png" 
-            alt="Open Web Explorer title with cute baby dinosaur logo">
-        </a>
-    </h2>
+        <div id="topMenu">
 
-	<?php if ( has_nav_menu( 'primary' ) ) : ?>
+	        <?php if ( has_nav_menu( 'primary' ) ) : ?>
+                <?php wp_nav_menu(); ?>
+	        <?php endif; ?>
+            <div style="clear:both;"></div>
 
-	<div role="navigation" class="site-navigation main-navigation">
-		<h1 class="assistive-text"><?php _e( 'Menu', 'p2' ); ?></h1>
-		<div class="assistive-text skip-link"><a href="#main" title="<?php esc_attr_e( 'Skip to content', 'p2' ); ?>"><?php _e( 'Skip to content', 'p2' ); ?></a></div>
+        </div> <!--#topMenu-->
 
-		<?php wp_nav_menu( array(
-			'theme_location' => 'primary',
-			'fallback_cb'    => '__return_false',
-		) ); ?>
+        <div id="headerTitle">
 
-    <?php do_action( 'before' ); ?>
+	        <h2 id="networkTitle">
+                <a href="<?php echo network_site_url(); ?>">
+                    <img src="<?php bloginfo('stylesheet_directory'); ?>/images/dinoLogoWithTitle.png" 
+                        alt="Open Web Explorer: cute baby dinosaur logo" 
+                        width="160" height="40" />
+                </a>
+            </h2>
 
-	<div class="sleeve">
-<!--
-		<h1>
-            <a href="<?php echo home_url( '/' ); ?>">FIXME</a>
-        </h1>
--->
-		<?php if ( get_bloginfo( 'description' ) ) : ?>
-			<small><?php bloginfo( 'description' ); ?></small>
-		<?php endif; ?>
-		<a class="secondary" href="<?php echo home_url( '/' ); ?>"></a>
+	        <h2 id="siteTitle">
+                <a href="<?php echo home_url( '/' ); ?>">
+                    <?php echo get_bloginfo( 'title' ); ?>
+                </a>
+            </h2>
 
-		<?php if ( current_user_can( 'publish_posts' ) ) : ?>
-			<a href="" id="mobile-post-button" style="display: none;"><?php _e( 'Post', 'p2' ) ?></a>
-		<?php endif; ?>
-	</div>
+        </div> <!--#headerTitle-->
 
+    </div> <!--#header-->
 
-	</div>
-	<?php endif; ?>
-</div>
-
-<div id="wrapper">
-
-	<?php get_sidebar(); ?>

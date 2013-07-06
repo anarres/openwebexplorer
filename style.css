@@ -151,25 +151,31 @@ div#footer {
 * FIXME - same as div.leftCol below
 */
 
+div#postbox {
+    padding-top: 40px;
+    clear: both;
+}
+
+
 div.avatar, div.author-avatar {
     width:80px;
     height:80px;
-    margin:4px;
-    margin-left: 10px;
+    margin: 2px;
+    margin-right: 4px;
+    //margin:4px;
+    //margin-left: 10px;
     float:left;
     font-size: 0.6em;
     overflow: hidden;
 }
-div#postbox {
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
+
 div#postbox textarea {
     width: 600px;
     max-width: 100%;
     min-height: 100px;
 }
 
+/*
 ul#post-types  {
     display: none;
 }
@@ -182,6 +188,7 @@ input#posttitle {
 div#postbox-type-quote {
     display: none;
 }
+*/
 
 
 /* OWN POSTED ITEMS */

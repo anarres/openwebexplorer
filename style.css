@@ -131,9 +131,12 @@ h2#networkTitle {
     float:left;
 }
 h2#siteTitle {
-    font-size: 1.6em;
     float: right;
     padding: 0px;
+}
+h2#siteTitle a{
+    color: #222;
+    text-decoration: none;
 }
 div#main {
     padding-top: 40px;
@@ -146,7 +149,6 @@ div#footer {
 }
 
 
-
 /*
 * FIXME - same as div.leftCol below
 */
@@ -156,39 +158,23 @@ div#postbox {
     clear: both;
 }
 
-
-div.avatar, div.author-avatar {
+div.avatar{
     width:80px;
     height:80px;
     margin: 2px;
     margin-right: 4px;
-    //margin:4px;
-    //margin-left: 10px;
     float:left;
     font-size: 0.6em;
     overflow: hidden;
 }
+
+
 
 div#postbox textarea {
     width: 600px;
     max-width: 100%;
     min-height: 100px;
 }
-
-/*
-ul#post-types  {
-    display: none;
-}
-label#post-prompt {
-    display: none;
-}
-input#posttitle {
-    display: none;
-}
-div#postbox-type-quote {
-    display: none;
-}
-*/
 
 
 /* OWN POSTED ITEMS */
@@ -245,22 +231,4 @@ span.date {
 }
 
 
-
-/* GET RID OF VARIOUS BITS AND PIECES */
-
-/* Annoying admin bar at top of page */
-
-
-/*
- .show-admin-bar { 
-    display: none; 
-}
-a#directions-keyboard {
-    display: none;
-}
-.assistive-text {
-    visibility:hidden;
-    height: 0px;
-}
-*/
 

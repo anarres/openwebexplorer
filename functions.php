@@ -3,6 +3,8 @@
 /**
  * @package OpenWebExplorer
 
+  Built using P2 as a starting point.
+
   super-useful:
   http://sixrevisions.com/wordpress/how-to-customize-the-wordpress-admin-area/
  */
@@ -14,28 +16,18 @@ add_filter( 'show_admin_bar', '__return_false');
 /* Add stuff to the admin pages */
 function friendlyBanner() {
   echo '<div style="padding: 5px 10px; border-bottom:2px dotted grey;">';
-
+  echo '<a style="float:right;font-size:1.4em;" href="';
+  echo home_url( '/' );
+  echo '">Return to ';
+  echo get_bloginfo( 'title' );
+  echo '</a>';
   echo '<h1>';
   echo '<img style="width:200px;height:auto;" src="';
   echo bloginfo('stylesheet_directory'); 
   echo '/images/dinoLogoWithTitle.png" alt="Open Web Explorer title with cute baby dinosaur logo"></h1>';
-
-  echo '<h2 style="font-size:2em;">Welcome to the friendly admin screen!</h2>';
-  echo '<p style="font-size:1.2em">You can follow blogs, social networking sites, podcasts, news, and more. ';
-  echo 'Click <strong>"Links"</strong> and then <strong>"Add new"</strong>, then add the web address of the website you want to follow.</p>';
-  echo '<p style="font-size:1.2em">Once you are done adding links, return to your MY RSS FEEDS FROM AROUND THE WEB page to see them in action.</p>';
-  echo '<p style="font-size:1.2em">(Occasionally adding the website address doesnt work and you have to find the feed url, if that happens click here LINK.)</p>';
-
-  echo '<p style="font-size:1.2em"><a href="';
-  echo get_site_url();
-  echo '">Back to my site</a></p>';
-
   echo '<div class="clear"></div></div>';
-
 }
 add_action( 'admin_head', 'friendlyBanner' );
-
-
 
 
 function remove_dashboard_widgets(){
@@ -50,20 +42,43 @@ function remove_dashboard_widgets(){
 }
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
 
+
 function remove_menu_items() {
   global $menu;
-  $restricted = array(__('Tools'));
+  $restricted = array(__('Tools'),__('Pages'));
   end ($menu);
   while (prev($menu)){
     $value = explode(' ',$menu[key($menu)][0]);
     if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){
-      unset($menu[key($menu)]);}
+      unset($menu[key($menu)]);
     }
   }
-
+}
 add_action('admin_menu', 'remove_menu_items');
 
 
+function remove_submenus() {
+  global $submenu;
+  //unset($submenu['index.php'][10]); // Removes 'Updates'.
+  //unset($submenu['options-general.php'][15]); // Removes 'Writing'.
+  //unset($submenu['options-general.php'][25]); // Removes 'Discussion'.
+  unset($submenu['themes.php'][5]);    // Removes 'Themes'.
+  unset($submenu['link-manager.php'][15]); // Removes Links -> Categories.
+  unset($submenu['edit.php'][15]); // Removes Posts -> Categories.
+  unset($submenu['options-general.php'][15]); // Removes 'Settings' -> 'Writing'.
+  unset($submenu['options-general.php'][20]); // Removes 'Settings' -> 'Reading'.
+  unset($submenu['options-general.php'][40]); // Removes 'Settings' -> 'Permalinks'.
+}
+add_action('admin_menu', 'remove_submenus');
+
+/*
+TODO
+
+Get rid of Settings -> Simplepie and Users -> all by changing capabilities!
+
+And figure out what to do about the Appearance section
+
+*/
 
 
 function custom_logo() {
@@ -73,12 +88,12 @@ function custom_logo() {
 }
 add_action('admin_head', 'custom_logo');
 
+
 function custom_login_logo() {
   echo '<style type="text/css">
     h1 a { background-image:url('.get_bloginfo('template_directory').'/images/login_logo.png) !important; }
     </style>';
 }
-
 add_action('login_head', 'custom_login_logo');
 
 
@@ -87,10 +102,9 @@ add_action('login_head', 'custom_login_logo');
 
 
 
-
-
 /*
-Below here is the stuff that came with P2
+Below here is the stuff that came with P2 theme, which
+this theme is built on.
 -----------------------------------------------------------
 */
 

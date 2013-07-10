@@ -102,12 +102,22 @@ div#header li {
     float: left;
 }
 
+
+
 /* TOP MENU */
 
+div#topMenu ul {
+    padding-top: 5px;
+    clear: both;
+}
+
+div#topMenu li {
+    font-size: 0.9em;
+}
+
 div#topMenu a {
-    font-size: 0.8em;
     padding: 5px 0px;
-    padding-right: 10px;
+    padding-right: 20px;
 }
 
 .current_menu_item a, .current_page_item a {
@@ -131,8 +141,10 @@ h2#networkTitle {
     float:left;
 }
 h2#siteTitle {
-    float: right;
     padding: 0px;
+    display: block;
+    clear: both;
+    font-size: 2.4em;
 }
 h2#siteTitle a{
     color: #222;
@@ -154,10 +166,11 @@ div#footer {
 */
 
 div#postbox {
-    padding-top: 40px;
+    padding: 40px 60px;
+    border-radius: 10px;
+    border: 20px solid #eed;
     clear: both;
 }
-
 div.avatar{
     width:80px;
     height:80px;
@@ -167,7 +180,6 @@ div.avatar{
     font-size: 0.6em;
     overflow: hidden;
 }
-
 
 
 div#postbox textarea {
@@ -184,6 +196,7 @@ ul#postlist li {
     padding: 10px;
     border: 2px solid #aaa;
     border-radius: 5px;
+    border: 10px solid #eed;
 }
 ul#postlist img {
     margin-right: 10px;
@@ -205,8 +218,8 @@ div.avatar {
 div.simplepieItem {
     margin: 20px 0px;
     padding: 10px;
-    border: 2px solid #aaa;
     border-radius: 5px;
+    border: 10px solid #eed;
 }
 div.leftCol {
     width:80px;

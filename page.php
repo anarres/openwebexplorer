@@ -1,8 +1,6 @@
 <?php
-/**
- * Default page template.
- *
- * @package Open Web Explorer
+/*
+Template Name: Page With Stream
  */
 ?>
 
@@ -18,6 +16,23 @@
 
 	    <?php endwhile; // end of the loop. ?>
 
+        <?php
+            $bookmarks = get_bookmarks();
+            $feed_urls=array();
+            foreach ( $bookmarks as $bookmark ) { 
+                array_push($feed_urls, $bookmark->link_url);
+            }
+
+            echo SimplePieWP($feed_urls, array(
+                'items_per_feed' => 5,
+                'cache_duration' => 1800,
+                'date_format' => 'j M Y, g:i a'
+            ));
+        ?>
+
     </div> <!--#main-->
 
 <?php get_footer(); ?>
+
+
+

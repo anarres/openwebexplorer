@@ -1,16 +1,31 @@
 <?php
 
+
 /**
  * @package OpenWebExplorer
 
   Built using P2 as a starting point.
  */
 
+function edit_admin_menus() {
+    global $menu;
+    global $submenu;  
+    $menu[10][0] = 'Images';                                // Rename 'Media' to 'Images'
+    $menu[15][0] = 'RSS';                                   // Rename 'Links' to 'RSS'
+    $submenu['link-manager.php'][5][0] = 'My RSS feeds';
+    $submenu['link-manager.php'][10][0] = 'New RSS feed';
+    $submenu['edit.php'][10][0] = 'New post';
+    $submenu['upload.php'][5][0] = 'Images library';
+    $submenu['upload.php'][10][0] = 'Add new image';
+    $submenu['options-general.php'][10][0] = 'Site settings';
+    remove_submenu_page('link-manager.php','edit-tags.php'); // Remove the 'Tags' submenu of 'RSS' 
+}  
+add_action( 'admin_menu', 'edit_admin_menus' );  
 
-/* Remove main menu items */ 
+
 function remove_menu_items() {
   global $menu;
-  $restricted = array(__('Tools'), __('Dashboard'), __('Plugins'), __('Pages'), __('Posts'), __('Appearance'));
+  $restricted = array(__('Tools'), __('Dashboard'), __('Plugins'), __('Pages'));
   end ($menu);
   while (prev($menu)){
     $value = explode(' ',$menu[key($menu)][0]);
@@ -22,78 +37,63 @@ function remove_menu_items() {
 add_action('admin_menu', 'remove_menu_items');
 
 
-/* Rename menus and submenus */
-function edit_admin_menus() {
-    global $menu;
-    global $submenu; 
-    $submenu['link-manager.php'][5][0] = 'RSS feeds';
-    $submenu['link-manager.php'][10][0] = 'New RSS feed';
-    $submenu['upload.php'][5][0] = 'Images library';
-    $submenu['upload.php'][10][0] = 'Add new image';
-    $submenu['options-general.php'][10][0] = 'Site settings';
-    $submenu['options-general.php'][25][0] = 'Comment settings';
-}  
-add_action( 'admin_menu', 'edit_admin_menus' );
-
-
-/* Remove submenus */
 function remove_submenus() {
   global $submenu;
   unset($submenu['link-manager.php'][15]);    // Removes Links -> Categories.
+  unset($submenu['edit.php'][15]);            // Removes Posts -> Categories.
+  unset($submenu['edit.php'][16]);            // Removes Posts -> Tags.
   unset($submenu['options-general.php'][15]); // Removes 'Settings' -> 'Writing'.
   unset($submenu['options-general.php'][20]); // Removes 'Settings' -> 'Reading'.
   unset($submenu['options-general.php'][30]); // Removes 'Settings' -> 'Media'.
   unset($submenu['options-general.php'][40]); // Removes 'Settings' -> 'Permalinks'.
+
   unset($submenu['users.php'][5]);              // Removes 'Users' -> 'All users'
-  unset($submenu['users.php'][10]);   
-unset($submenu['options-general.php'][40]);
-unset($submenu['options-general.php'][41]);
-unset($submenu['options-general.php'][42]);
-unset($submenu['options-general.php'][43]);
-unset($submenu['options-general.php'][44]);
-unset($submenu['options-general.php'][45]);
-unset($submenu['options-general.php'][46]);
-unset($submenu['options-general.php'][47]);
-unset($submenu['options-general.php'][48]);
-unset($submenu['options-general.php'][49]);
-unset($submenu['options-general.php'][50]);
-unset($submenu['options-general.php'][51]);
-unset($submenu['options-general.php'][52]);
-unset($submenu['options-general.php'][53]);
-unset($submenu['options-general.php'][54]);
-unset($submenu['options-general.php'][55]);
-unset($submenu['options-general.php'][56]);
-unset($submenu['options-general.php'][57]);
-unset($submenu['options-general.php'][58]);
-unset($submenu['options-general.php'][59]);
-unset($submenu['options-general.php'][60]);
-unset($submenu['options-general.php'][61]);
-unset($submenu['options-general.php'][62]);
-unset($submenu['options-general.php'][63]);
-unset($submenu['options-general.php'][64]);
-unset($submenu['options-general.php'][65]);
-unset($submenu['options-general.php'][66]);
-unset($submenu['options-general.php'][67]);
-unset($submenu['options-general.php'][68]);
-unset($submenu['options-general.php'][69]);
+  unset($submenu['users.php'][10]);             
+
 }
 add_action('admin_menu', 'remove_submenus');
 
 
-/* Change order of main menu items */
 function custom_menu_order($menu_ord) {  
-    if (!$menu_ord) return true;        
-    return array(
+    if (!$menu_ord) return true;  
+      
+    return array(  
+
         'options-general.php', // Settings  
-        'edit-comments.php',
         'link-manager.php', // Links  
-        'themes.php',       // Appearance 
+        'themes.php',       // Appearance
+        'users.php',        // Users  
+  
+
+        'index.php',        // Dashboard    
+        'edit.php',         // Posts   
+        'edit-comments.php',// Comments 
         'upload.php',       // Media    
-        'users.php',        // Users
+        'edit.php?post_type=page', // Pages 
+        'plugins.php',      // Plugins  
+        'tools.php',        // Tools  
+
+        'separator1',       // First separator
+        'separator2',       // Second separator 
+        'separator-last'   // Last separator  
     );  
 }  
 add_filter('custom_menu_order', 'custom_menu_order'); // Activate custom_menu_order  
 add_filter('menu_order', 'custom_menu_order');  
+
+
+function remove_dashboard_widgets(){
+  global$wp_meta_boxes;
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']); 
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
+}
+add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
 
 
 function custom_post_columns($defaults) {
@@ -113,50 +113,30 @@ add_filter('manage_pages_columns', 'custom_pages_columns');
 
 
 function custom_admin_styles() {
+   echo '<style type="text/css">
+            #wpadminbar {display: none;}
+         </style>';
 
-    // Create post object
-    // Not the best way to do this.
-    $my_post = array(
-      'ID'            => 2,
-      'post_title'    => 'Feeds',
-      'post_type'     => 'page',
-      'post_content'  => '',
-      'post_status'   => 'publish',
-      'post_author'   => 1,
-      'post_category' => array(8,39)
-    );
-    // Insert the post into the database
-    $outputfoo = wp_insert_post( $my_post );
-
-    echo '<div id="loginInfo">You are logged in as ';
-    global $current_user;
-    get_currentuserinfo();
-    echo $current_user->user_login;
-    echo '. <a href="';
-    echo wp_logout_url('$index.php');
-    echo '">Log out</a>.</div>';
-
-    echo '<a href="<';
-    echo network_site_url();
-    echo '"><img id="dinoLogo" src="';
-    echo get_bloginfo('stylesheet_directory'); 
-    echo '/images/dinoLogoWithTitle.png" alt="Open Web Explorer: cute baby dinosaur logo" width="160" height="40" /></a>';
-
-    echo '<h2><a href="';
+    echo '<div style="padding: 10px;padding-top:0px;">';
+    echo '<p>Hello! You are editing <a href="';
     echo get_home_url();
     echo '">';
     echo get_bloginfo( 'name' );
-    echo '</a> - Settings</h2>';
-
-
-
-
+    echo '</a> at <a href="http://exploretheopenweb.com/">Open Web Explorer</a>, logged in as USERNAME. ';
+    echo '<a href="';
+    echo wp_logout_url('$index.php');
+    echo '">Log out</a></p>';
+    echo '</p></div>';
 }
 add_action('admin_head', 'custom_admin_styles');
 
 
 
+
+
+
 /*      ADMIN CSS HACK      */
+
 
 // Hack to remove all admin css and add my own
 function my_scripts_method() {
@@ -165,21 +145,30 @@ function my_scripts_method() {
         get_template_directory_uri() . '/funky-admin.js'
 	);
 }
-add_action( 'admin_enqueue_scripts', 'my_scripts_method' );
+//add_action( 'admin_enqueue_scripts', 'my_scripts_method' );
 
 
 // admin css hack continued
 function load_custom_wp_admin_style() {
-        wp_register_style( 'custom_wp_admin_css_one', get_template_directory_uri() . '/original-admin.css', false, '1.0.0' );
-        wp_enqueue_style( 'custom_wp_admin_css_one' );
         wp_register_style( 'custom_wp_admin_css', get_template_directory_uri() . '/funky-admin.css', false, '1.0.0' );
-        wp_enqueue_style( 'custom_wp_admin_css' );}
-add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+        wp_enqueue_style( 'custom_wp_admin_css' );
+}
+//add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
 
 
 
-/* When you log in you get sent to the main blog page */
+
+
+
+
+
+
+
+
+
+/* When you log in you go straight to the 'New post' page */
+
 function my_login_redirect( $redirect_to, $request, $user ){
 
     //is there a user to check?
@@ -190,7 +179,7 @@ function my_login_redirect( $redirect_to, $request, $user ){
         if( in_array( "administrator", $user->roles ) ) {
 
             // redirect them to the default place
-            return get_home_url(); //. '/wp-admin/post-new.php';
+            return get_home_url() . '/wp-admin/post-new.php';
         } 
         else {
             return home_url();
@@ -203,21 +192,123 @@ function my_login_redirect( $redirect_to, $request, $user ){
 add_filter("login_redirect", "my_login_redirect", 10, 3);
 
 
+/*
+function mytheme_admin_bar_render() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('comments');
+    $wp_admin_bar->remove_menu('my-sites');
+    $wp_admin_bar->remove_menu('site-name');
+    $wp_admin_bar->remove_menu('get-shortlink');
+    $wp_admin_bar->remove_menu('edit');
+    $wp_admin_bar->remove_menu('new-content');
+    $wp_admin_bar->remove_menu('appearance');
+    $wp_admin_bar->remove_menu('updates');
+}
+add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
+*/
+
+
+/*      ADMIN CSS HACK      */
+
+/*
+// Hack to remove all admin css and add my own
+function my_scripts_method() {
+	wp_enqueue_script(
+		'foo',
+        get_template_directory_uri() . '/foo.js'
+	);
+}
+//add_action( 'admin_enqueue_scripts', 'my_scripts_method' );
+
+// admin css hack continued
+function load_custom_wp_admin_style() {
+        wp_register_style( 'custom_wp_admin_css', get_template_directory_uri() . '/only-admin-style.css', false, '1.0.0' );
+        wp_enqueue_style( 'custom_wp_admin_css' );
+}
+//add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+*/
+
+
+
+
+/*      REMOVE DASHBOARD WIDGETS            */
+
+/*
 function remove_dashboard_widgets(){
   global$wp_meta_boxes;
-  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
-  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
-  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']); 
-  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
   unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+
 }
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
+*/
 
 
+/*
+function remove_menu_items() {
+  global $menu;
+  $restricted = array(__('Tools'),__('Pages'),__('Plugins'),__('Dashboard'),__('Appearance'));
+  end ($menu);
+  while (prev($menu)){
+    $value = explode(' ',$menu[key($menu)][0]);
+    if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){
+      unset($menu[key($menu)]);
+    }
+  }
+}
+add_action('admin_menu', 'remove_menu_items');
 
+function remove_submenus() {
+  global $submenu;
+  unset($submenu['themes.php'][5]);           // Removes 'Themes'.
+  unset($submenu['link-manager.php'][15]);    // Removes Links -> Categories.
+  unset($submenu['edit.php'][15]);            // Removes Posts -> Categories.
+  unset($submenu['edit.php'][16]);            // Removes Posts -> Tags.
+  unset($submenu['options-general.php'][15]); // Removes 'Settings' -> 'Writing'.
+  unset($submenu['options-general.php'][20]); // Removes 'Settings' -> 'Reading'.
+  unset($submenu['options-general.php'][30]); // Removes 'Settings' -> 'Media'.
+  unset($submenu['options-general.php'][40]); // Removes 'Settings' -> 'Permalinks'.
+}
+add_action('admin_menu', 'remove_submenus');
+*/
+
+
+function customize_meta_boxes() {
+  /* Removes meta boxes from Posts */
+  remove_meta_box('postcustom','post','normal');
+  remove_meta_box('trackbacksdiv','post','normal');
+  remove_meta_box('commentstatusdiv','post','normal');
+  remove_meta_box('commentsdiv','post','normal');
+  remove_meta_box('tagsdiv-post_tag','post','normal');
+  remove_meta_box('postexcerpt','post','normal');
+  /* Removes meta boxes from pages */
+  remove_meta_box('postcustom','page','normal');
+  remove_meta_box('trackbacksdiv','page','normal');
+  remove_meta_box('commentstatusdiv','page','normal');
+  remove_meta_box('commentsdiv','page','normal');  
+}
+//add_action('admin_init','customize_meta_boxes');
+
+/*
+function custom_post_columns($defaults) {
+  unset($defaults['comments']);
+  return $defaults;
+}
+
+add_filter('manage_posts_columns', 'custom_post_columns');
+
+function custom_pages_columns($defaults) {
+  unset($defaults['comments']);
+  return $defaults;
+}
+
+add_filter('manage_pages_columns', 'custom_pages_columns');
 
 function custom_logo() {
   echo '<style type="text/css">
@@ -235,15 +326,6 @@ function custom_login_logo() {
 add_action('login_head', 'custom_login_logo');
 
 
-
-
-
-
-/*
-
-    Below here is the code that came with P2 theme, which
-    this theme (Open Web Explorer) is built on.
-
 */
 
 
@@ -251,6 +333,20 @@ add_action('login_head', 'custom_login_logo');
 
 
 
+
+
+
+
+
+
+
+
+
+/*
+Below here is the code that came with P2 theme, which
+this theme is built on.
+-----------------------------------------------------------
+*/
 
 require_once( get_template_directory() . '/inc/utils.php' );
 

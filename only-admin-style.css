@@ -1,0 +1,572 @@
+/* RESET */
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* BOX LAYOUT OF THE MAIN SECTIONS */
+
+div#wpwrap {
+    width: 1400px;
+    max-width: 100%;
+    margin: 0px 10px;
+    border: 2px solid #ccc;
+}
+
+div#adminmenuwrap {
+    width: 150px;
+    max-width: 100%;
+    padding: 0px 20px;
+    padding-bottom: 40px;
+    float: left;
+    font-size: 1.2em;
+}
+
+div#wpbody {
+    width: 1000px;
+    max-width: 100%;
+    margin-top: 100px;
+    padding: 0px 20px;
+    padding-bottom: 40px;
+    float: left;
+}
+
+div#wpfooter {
+    text-align: center;
+    padding: 10px;
+    clear: both;
+}
+
+
+/* THE ADMIN BAR OF DOOM */
+
+div#wpadminbar ul {
+    visibility: hidden;
+    height: 0px;
+}
+div#wpadminbar ul#wp-admin-bar-user-actions  {
+    visibility: visible;
+}
+div#wpadminbar ul#wp-admin-bar-user-actions * {
+    display: inline;
+}
+div#wpadminbar ul#wp-admin-bar-user-actions img {
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+
+/* GENERAL STYLES AND TYPOGRAPHY */
+
+
+body {
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    color: #222;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-size: 2.2em;
+    font-weight: normal;
+    text-align: left;
+    padding: 10px 0px;
+    clear: both;
+}
+h3 {
+    font-size: 1.6em;
+}
+h4,h5,h6 {
+    font-size: 1.4em;
+}
+p {
+    padding: 5px 0px;
+    line-height: 1.4em;
+    clear: both;
+}
+li {
+    margin-left: 20px;
+    padding: 3px 0px;
+    list-style:none;
+}
+a {
+    color: #05b;
+    text-decoration: none;
+    font-weight: regular;
+}
+a:hover {
+    color: #b11331;
+    text-decoration: underline;
+}
+br {
+    display: block;
+    clear: both;
+    height: 4px;
+}
+label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+input, textarea, button {
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    padding: 2px 5px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+table {
+    border: 1px solid #666;
+    border-radius: 2px;
+}
+th, td {
+    border: 1px dotted #666;
+    padding: 4px;
+}
+
+
+/* MISCELLANEOUS */
+
+a.wp-has-submenu {
+    color: #666;
+}
+
+/* Menu headings should not look like links if the link already exists */
+
+a.wp-has-submenu:hover {
+    color: #666;
+    text-decoration: underline;
+}
+
+
+li#collapse-menu {
+    display: none;
+}
+
+
+
+/* These things would only be useful if you kept the collapsing menu */
+
+.wp-submenu-head {
+    display:none;
+}
+
+/* Get some contrast in size between menu items and sub-menu items */
+
+ul.wp-submenu li {
+    font-size: 0.8em;
+}
+
+.screen-reader-shortcut {
+    visibility: hidden;
+}
+
+.screen-meta-toggle {
+    display: none;
+}
+
+/* Get rid of the 'help' */
+
+div#screen-options-wrap {
+    display: none;
+}
+
+
+div#contextual-help-wrap {
+    display: none;
+} 
+
+div.clear {
+    clear: both;
+}
+
+/* STYLES FOR SPECIFIC SECTIONS, pasted in */
+
+
+
+/*------------------------------------------------------------------------------
+  11.0 - Write/Edit Post Screen
+------------------------------------------------------------------------------*/
+
+#show-comments {
+	overflow: hidden;
+}
+
+#save-action .spinner,
+#show-comments a,
+#show-comments .spinner {
+	float: left;
+}
+
+#titlediv {
+	position: relative;
+	margin-bottom: 10px;
+}
+
+#titlediv label {
+	cursor: text;
+}
+
+#titlediv div.inside {
+	margin: 0;
+}
+
+#poststuff #titlewrap {
+	border: 0;
+	padding: 0;
+}
+
+#titlediv #title {
+	padding: 3px 8px;
+	font-size: 1.7em;
+	line-height: 100%;
+	width: 100%;
+	outline: none;
+}
+
+#titlediv #title-prompt-text,
+#wp-fullscreen-title-prompt-text {
+	color: #bbb;
+	position: absolute;
+	font-size: 1.7em;
+	padding: 8px 10px;
+}
+
+#wp-fullscreen-save .fs-saved {
+	color: #999;
+	float: right;
+	margin-top: 4px;
+}
+
+#wp-fullscreen-title-prompt-text {
+	padding: 11px;
+}
+
+#poststuff .inside-submitbox,
+#side-sortables .inside-submitbox {
+	margin: 0 3px;
+	font-size: 11px;
+}
+
+input#link_description,
+input#link_url {
+	width: 98%;
+}
+
+#pending {
+	background: 0 none;
+	border: 0 none;
+	padding: 0;
+	font-size: 11px;
+	margin-top: -1px;
+}
+
+#edit-slug-box {
+	line-height: 23px;
+	min-height: 23px;
+	margin-top: 5px;
+	padding: 0 10px;
+}
+
+#edit-slug-box .cancel {
+	margin-right: 10px;
+	font-size: 11px;
+}
+
+#editable-post-name-full {
+	display: none;
+}
+
+#editable-post-name input {
+	width: 16em;
+}
+
+.postarea h3 label {
+	float: left;
+}
+
+.submitbox .submit {
+	text-align: left;
+	padding: 12px 10px 10px;
+	font-size: 11px;
+}
+
+.submitbox .submitdelete {
+	text-decoration: none;
+	padding: 1px 2px;
+}
+
+.submitbox .submitdelete,
+.submitbox .submit a:hover {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+.submitbox .submit input {
+	margin-bottom: 8px;
+	margin-right: 4px;
+	padding: 6px;
+}
+
+.inside-submitbox #post_status {
+	margin: 2px 0 2px -2px;
+}
+
+#post-status-select, #post-format {
+	line-height: 2.5em;
+	margin-top: 3px;
+}
+
+/* Post Screen */
+#post-body #normal-sortables {
+	min-height: 50px;
+}
+
+.postbox {
+	position: relative;
+	min-width: 255px;
+}
+
+#trackback_url {
+	width: 99%;
+}
+
+#normal-sortables .postbox .submit {
+	background: transparent none;
+	border: 0 none;
+	float: right;
+	padding: 0 12px;
+	margin:0;
+}
+
+.category-add input[type="text"],
+.category-add select {
+	width: 100%;
+	max-width: 260px;
+}
+
+.press-this #side-sortables .category-tabs li,
+ul.category-tabs li,
+#side-sortables .add-menu-item-tabs li,
+.wp-tab-bar li {
+	display: inline;
+	line-height: 1.35em;
+}
+
+.no-js .category-tabs li.hide-if-no-js {
+ 	display: none;
+}
+
+.category-tabs a,
+#side-sortables .add-menu-item-tabs a,
+.wp-tab-bar a {
+	text-decoration: none;
+}
+
+.category-tabs {
+	margin: 8px 0 3px;
+}
+
+#category-adder h4 {
+	margin: 10px 0;
+}
+
+#side-sortables .add-menu-item-tabs,
+.wp-tab-bar {
+	margin-bottom: 3px;
+}
+
+#normal-sortables .postbox #replyrow .submit {
+	float: none;
+	margin: 0;
+	padding: 0 7px 5px;
+}
+
+#side-sortables .submitbox .submit input,
+#side-sortables .submitbox .submit .preview,
+#side-sortables .submitbox .submit a.preview:hover {
+	border: 0 none;
+}
+
+#side-sortables .inside-submitbox .insidebox,
+.stuffbox .insidebox {
+	margin: 11px 0;
+}
+
+ul.category-tabs,
+ul.add-menu-item-tabs,
+ul.wp-tab-bar {
+	margin-top: 12px;
+}
+
+ul.category-tabs li {
+	border-style: solid;
+	border-width: 1px;
+	position: relative;
+}
+
+ul.add-menu-item-tabs li.tabs,
+.wp-tab-active {
+	border-style: solid solid none;
+	border-width: 1px 1px 0;
+}
+
+#post-body .add-menu-item-tabs li.tabs {
+	border-style: solid none solid solid;
+	border-width: 1px 0 1px 1px;
+	margin-right: -1px;
+}
+
+ul.category-tabs li,
+ul.add-menu-item-tabs li,
+ul.wp-tab-bar li {
+	padding: 3px 5px 5px;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+/* positioning etc. */
+form#tags-filter {
+	position: relative;
+}
+
+/* Edit posts */
+td.post-title strong,
+td.plugin-title strong {
+	display: block;
+	margin-bottom: .2em;
+}
+
+td.post-title p,
+td.plugin-title p {
+	margin: 6px 0;
+}
+
+/* Global classes */
+.wp-hidden-children .wp-hidden-child,
+.ui-tabs-hide {
+	display: none;
+}
+
+.commentlist .avatar {
+	vertical-align: text-top;
+}
+
+#post-body .tagsdiv #newtag {
+	margin-right: 5px;
+	width: 16em;
+}
+
+#side-sortables input#post_password {
+	width: 94%
+}
+
+#side-sortables .tagsdiv #newtag {
+	width: 68%;
+}
+
+#post-status-info {
+	border-width: 0 1px 1px;
+	border-style: none solid solid;
+	width: 100%;
+	-webkit-border-bottom-left-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+#post-status-info td {
+	font-size: 12px;
+}
+
+.autosave-info {
+	padding: 2px 15px;
+	text-align: right;
+}
+
+#editorcontent #post-status-info {
+	border: none;
+}
+
+#post-body .wp_themeSkin .mceStatusbar a.mceResize {
+	display: block;
+	background: transparent url('../images/resize.gif') no-repeat scroll right bottom;
+	width: 12px;
+	cursor: se-resize;
+	margin: 0 1px;
+	position: relative;
+	top: -2px;
+}
+
+#post-body .postarea .wp_themeSkin .mceStatusbar a.mceResize {
+	top: 20px;
+}
+
+#content-resize-handle {
+	background: transparent url('../images/resize.gif') no-repeat scroll right bottom;
+	width: 12px;
+	cursor: se-resize;
+	position: absolute;
+	right: 2px;
+	height: 19px;
+}
+
+.press-this #content-resize-handle {
+	bottom: 2px;
+}
+
+.tmce-active #content-resize-handle {
+	display: none;
+}
+
+#wp-word-count {
+	display: block;
+	padding: 2px 10px;
+}
+
+#timestampdiv select {
+	height: 20px;
+	line-height: 14px;
+	padding: 0;
+	vertical-align: top;
+}
+
+#aa, #jj, #hh, #mn {
+	padding: 1px;
+	font-size: 12px;
+}
+
+#jj, #hh, #mn {
+	width: 2em;
+}
+
+#aa {
+	width: 3.4em;
+}
+
+.curtime #timestamp {
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding: 2px 0 1px 20px;
+}
+
+#timestampdiv {
+	padding-top: 5px;
+	line-height: 23px;
+}
+
+#timestampdiv p {
+	margin: 8px 0 6px;
+}
+
+#timestampdiv input {
+	border-width: 1px;
+	border-style: solid;
+}
+
+
+
+
+
+

@@ -1,0 +1,110 @@
+* {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    font-size: 16px;
+}
+a { 
+    color: blue;
+    cursor: pointer;
+}
+a:hover {
+    color: red;
+}
+div#wpadminbar * {
+    display: none;
+}
+div#wpwrap {
+    margin: 10px;
+}
+div#loginInfo {
+    float: right;
+    padding: 5px;
+}
+div.wrap { 
+    clear: both; 
+}
+
+/* Custom simplified admin menu */
+
+#adminmenuwrap {
+    display: block;
+    clear: both;
+    background-color: #eed;
+    border-radius: 10px;
+    border: 10px solid #eed;    
+}
+#adminmenu li { 
+    display: block;
+}
+#adminmenu br {
+    display: none;
+}
+#adminmenu a {
+    display:none;
+}
+#adminmenu li.wp-submenu-head { 
+    display:none; 
+}
+#adminmenu ul.wp-submenu a, li#menu-comments a {
+    display: block;
+    padding: 2px 20px;
+    text-decoration: underline;
+}
+li#menu-comments span {
+    display: none;
+}
+#adminmenu li.current a {
+    font-style: italic;
+    color: #222; 
+    cursor: text;
+    text-decoration: none;
+}
+#adminmenu div.separator {
+    display: none;
+}
+div.wp-menu-arrow { 
+    display: none; 
+}
+.screen-reader-text {
+	visibility: hidden;
+}
+
+
+/* Get rid of various things */
+
+li#collapse-menu * {
+    display: none;
+}
+div#screen-meta-links * {
+    display: none;
+}
+
+
+
+/* MISCELLANEOUS */
+
+table {
+    border: 5px solid #ccc;
+    border-radius: 5px;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+}
+input, button, textarea {
+    border: 2px solid #666;
+    border-radius: 2px;
+    padding: 5px 10px;
+}
+
+div#wpfooter {
+    clear: both;
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+
+
